@@ -4,7 +4,7 @@ import rootRouter from './router/index';
 
 
 function App() {
-  const AppRoutes = () => useRoutes(rootRouter);
+  const AppRoutes = () => useRoutes(rootRouter);//hook
 
   return (
     <>

@@ -10,28 +10,28 @@ import { HomeOutlined, UserOutlined, FileProtectOutlined, SettingOutlined } from
  export const menuList = [
   {
     id:1,
-    key:"home",
+    key:"/home",
     label: "首页",
     icon: <HomeOutlined />,
   },
   {
     id:2,
-    key: "user",
+    key: "/user",
     label: "商品管理",
     icon: <UserOutlined />,
   },
-  // {
-  //   id:3,
-  //   key: 3,
-  //   label: "用户管理",
-  //   icon: <FileProtectOutlined />,
-  // },
-  // {
-  //   id:4,
-  //   key: 4,
-  //   label: "设置",
-  //   icon: <SettingOutlined />,
-  // }
+  {
+    id:3,
+    key: 3,
+    label: "用户管理",
+    icon: <FileProtectOutlined />,
+  },
+  {
+    id:4,
+    key: 4,
+    label: "设置",
+    icon: <SettingOutlined />,
+  }
 ];
 
 
