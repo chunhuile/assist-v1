@@ -63,12 +63,11 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### 构建
 -  对node版本号有要求
-    目前使用的v16.8.0
+    目前使用的v18.0.0
 
-- yarn dev/npm run dev
+
 
 ## 规范
-
     文件命遵守驼峰 例如：inteviewTable
     css遵守驼峰 且遵守域名空间
     注释参照jsdoc规范

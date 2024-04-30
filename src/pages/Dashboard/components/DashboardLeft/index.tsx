@@ -3,6 +3,8 @@ import { Table,Pagination ,Divider} from 'antd';
 import type { TableProps  } from 'antd';
 
 import { UserOutlined } from "@ant-design/icons"
+import { userTable } from '../../../../mockjs/dashboard';
+import userImage from "../../../../assests/images/admin_user.png"
 
 interface DataType {
     key: string;
@@ -31,70 +33,16 @@ interface DataType {
 
   ];
   
-  const data: DataType[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park'
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park'
-      },
-      {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park'
-      },
-      {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park'
-      },  {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park'
-      },
-      {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park'
-      },
-      {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park'
-      },
-  ];
+  const data: DataType[] = userTable
   
 
 const App: React.FC = () => (
-  <div style={ DashboarLeft }>
+  <div style={DashboarLeft}>
     <div style={ DashboarLeftUser }>
       <div style={ DashboarLeftUserinfo }>
           <div style={{ width:"50%"}}>
-            {/* <image /> */}
-            <UserOutlined />
+            <img style={ { width:"80px",height:"80px",borderRadius:"50%" }} src={userImage} alt="加载中。。。" />
+
           </div>
 
           <div style={ { width:"50%" }}>
