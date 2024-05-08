@@ -1,13 +1,15 @@
 import React, { useState }  from 'react';
 import type { MenuProps } from 'antd';
 import { Layout, Menu,  } from 'antd';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import '../../styles/dashboard.scss'
 
-import DashboardLeft from "./components/DashboardLeft";
-import DashboardRight from "./components/DashboardRight";
+import DashboardLeft from "./components/DashboardUserInfo";
+import DashboardRight from "./components/DashboardNumber";
 import Dashboard from "./dashboard"
 import  { menuList } from "../../mockjs/dashboard"
+
+import UserManagement from "../UserManagement/index"
 
 const { Content, } = Layout;
 const menuItems = menuList
@@ -46,9 +48,16 @@ const DashboardMain: React.FC = () => {
           style={{height:"100%"}}
       />
       </div>
+      <Layout style = {{ marginLeft: 200 }}>
+        <Content >
+  
+          <Outlet />
+
+        </Content>
 
 
-      <Dashboard  />
+    </Layout> 
+
     </Layout>
   );
 };

@@ -1,0 +1,16 @@
+// 两行超出显示省略号
+.scope-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+// 单行超出显示省略号
+.scope-span-overflow{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+}
