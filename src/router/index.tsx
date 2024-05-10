@@ -1,10 +1,12 @@
 import React from "react";
 import { RouteObject,Navigate } from "react-router-dom";
+import Login from "../pages/Login"
 
 import Home from "../pages/Dashboard/index";
 import UserManagement from "../pages/UserManagement";
 import Dashboard from "../pages/Dashboard/dashboard"
-import Login from "../pages/Login"
+import ProductManagement from "../pages/ProductManagement";
+
 
 const withLoadingComponent = (comp:JSX.Element) => {
     <React.Suspense fallback={<div>Loading...</div>}>
@@ -31,6 +33,10 @@ const rootRouter :RouteObject[]=[
         path: "/user",
         element: <UserManagement />,
       },
+      {
+        path:"/productManagement",
+        element:<ProductManagement />
+      }
     ],
   },
 

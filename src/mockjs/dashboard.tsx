@@ -3,7 +3,6 @@
 // */ 
 
 
-import React from 'react';
 import { HomeOutlined, UserOutlined, FileProtectOutlined, SettingOutlined } from '@ant-design/icons';
 
 // menu的数据
@@ -17,13 +16,13 @@ import { HomeOutlined, UserOutlined, FileProtectOutlined, SettingOutlined } from
   {
     id:2,
     key: "/user",
-    label: "商品管理",
+    label: "用户管理",
     icon: <UserOutlined />,
   },
   {
     id:3,
-    key: 3,
-    label: "用户管理",
+    key: "/productManagement",
+    label: "商品管理",
     icon: <FileProtectOutlined />,
   },
   {
@@ -91,4 +90,6 @@ export const userTable=[
       address: 'Sydney No. 1 Lake Park'
     },
 ];
+
+
 

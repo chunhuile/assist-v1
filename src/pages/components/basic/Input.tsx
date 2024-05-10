@@ -23,6 +23,7 @@ const BasicInput: React.FC<BasicButtonProps> = ({
 
     return (
         <div style={BasicInputStyle}>
+            {/* <span>{label}</span> */}
             {label}
             <Input style={inputStyle} placeholder={placeholder}
             onChange={handler} 
@@ -37,6 +38,8 @@ const BasicInput: React.FC<BasicButtonProps> = ({
 const basicInput = {
     
 }
+
+
 export default BasicInput;
 
 

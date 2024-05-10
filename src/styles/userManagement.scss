@@ -1,3 +1,13 @@
 .UserManagement {
     
+    &__filter{
+        width: 100%;
+    }
+  
+ 
+    .UserFilter{
+        width:100%;
+        margin-bottom: 20px;
+        display: flex;
+    }
 }
