@@ -8,11 +8,11 @@ import Dashboard from "../pages/Dashboard/dashboard"
 import ProductManagement from "../pages/ProductManagement";
 
 
-const withLoadingComponent = (comp:JSX.Element) => {
-    <React.Suspense fallback={<div>Loading...</div>}>
-      {comp}
-    </React.Suspense>
-}
+// const withLoadingComponent = (comp:JSX.Element) => {
+//     <React.Suspense fallback={<div>Loading...</div>}>
+//       {comp}
+//     </React.Suspense>
+// }
 
 
 // react router v6·路由配置 （路由表）

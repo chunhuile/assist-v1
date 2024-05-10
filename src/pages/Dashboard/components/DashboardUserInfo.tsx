@@ -1,11 +1,10 @@
 import React from 'react';
 import { Divider} from 'antd';
-
 import '../../../styles/dashboard.scss'
 import '../../../styles/global.scss'
 import userImage from "../../../assests/images/admin_user.png"
-
-
+import DashboardCard from './DashboardCard';
+import DashboardNumberCard from './DashboardNumberCard';
   
 
 const App: React.FC = () => (
@@ -14,7 +13,6 @@ const App: React.FC = () => (
       <div style={ DashboarLeftUserinfo }>
           <div style={{ width:"50%"}}>
             <img style={ { width:"80px",height:"80px",borderRadius:"50%" }} src={userImage} alt="加载中。。。" />
-
           </div>
 
           <div style={ { width:"50%" }}>
@@ -27,14 +25,16 @@ const App: React.FC = () => (
       <Divider ></Divider>
 
       <div>
-        <div>
-          <span  className='scope-span-style scope-span-color'>上次登陆时间</span>
-          <span className='scope-span-color'>2021:03:04</span>
-        </div>
-       <div style={{ marginTop:"10px"}}>
-          <span className='scope-span-style scope-span-color'>上次登陆时间</span>
-          <span  className='scope-span-color'>2021:03:4</span>
-       </div>
+        <DashboardCard 
+          label="上次登陆的时间"
+          text="2021:03:40"
+          style={{}}
+        />
+        <DashboardCard 
+          label="本次登陆的时间"
+          text="2021:12:40"
+          style={{marginTop:"10px"}}
+        />
       </div>
     </div>
 
@@ -42,23 +42,42 @@ const App: React.FC = () => (
 
          {/* 数据统计 */}
          <div style={DashboardRightData}>
-          <div style={ DashboardRightNumber }>
-            <span style={{ display:"block" }}>¥1233</span>
-            <span  style={{ display:"block" }}>本月支付订单</span>
-          </div>
-          <div style={ DashboardRightNumber }>
-            <span style={{ display:"block" }}>¥1233</span>
-            <span  style={{ display:"block" }}>本月支付订单</span>
-          </div>
+          <DashboardNumberCard 
+            number="123"
+            label="今日支付订单"
+            style={DashboardRightNumber}
+            iconStyle={DashboardCardIcon}
+            iconType="CheckOutlined"
+            iconColor={{color:"#fff"}}
 
-          <div style={ DashboardRightNumber }>
-            <span style={{ display:"block" }}>¥1233</span>
-            <span  style={{ display:"block" }}>本月支付订单</span>
-          </div>
-          <div style={ DashboardRightNumber }>
-            <span style={{ display:"block" }}>¥1233</span>
-            <span  style={{ display:"block" }}>本月支付订单</span>
-          </div>
+          />
+
+          <DashboardNumberCard 
+            number="123"
+            label="今日收藏订单"
+            style={DashboardRightNumber}
+            iconStyle={DashboardCardIconBackColl}
+            iconType="ClockCircleOutlined"
+            iconColor={{color:"#fff"}}
+          />
+
+        <DashboardNumberCard 
+            number="123"
+            label="本月支付订单"
+            style={DashboardRightNumber}
+            iconStyle={DashboardCardIcon }
+            iconType="CheckOutlined"
+            iconColor={{color:"#fff"}}
+          />
+
+          <DashboardNumberCard 
+            number="123"
+            label="本月收藏订单"
+            style={DashboardRightNumber}
+            iconStyle={DashboardCardIconBackColl}
+            iconType="ClockCircleOutlined"
+            iconColor={{color:"#fff"}}
+          /> 
       </div>
        
     </div>
@@ -80,16 +99,41 @@ const DashboarLeftUserinfo = {
 }
 const DashboardRightData = {
   display:"flex",
-  flexFlow: "wrap"
+  flexFlow: "wrap",
+
 }
 
 const DashboardRightNumber = {
   width:"46%",
-  margin:"5px",
+  margin:"6px",
   background:"#fff",
-  padding:"10px"
-  
+  padding:"30px 20px",
+  borderRadius:"12px",
+  display:"flex"
 }
 
 
+const DashboardCardIcon={
+  width:"40%",
+  height:"100%",
+  background:"#5de6d64a",
+  borderRadius:"10px",
+  display:"flex",
+  alignItems:"center",
+  justifyContent:"center",
+  fontSize:"20px"
+}
+
+
+const DashboardCardIconBackColl = {
+  background:"rgb(239 166 67/29%)",
+  width:"40%",
+  height:"100%",
+  borderRadius:"10px",
+  display:"flex",
+  alignItems:"center",
+  justifyContent:"center",
+  fontSize:"20px"
+
+}
 export default App;

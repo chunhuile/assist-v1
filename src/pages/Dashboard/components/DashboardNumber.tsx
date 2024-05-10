@@ -3,6 +3,7 @@ import type { TableProps  } from 'antd';
 
 import { Table,Pagination } from 'antd';
 import { userTable } from '../../../mockjs/dashboard';
+import DashboardEcharts from './DashboardEcharts';
 
 interface DataType {
   key: string;
@@ -42,7 +43,7 @@ const App: React.FC = () => (
    </div>
    <div style={{width:"50%"}}>
       {/*  echarts */}
-      这里是图表样式
+      <DashboardEcharts />
    </div>
   </div>
 );
