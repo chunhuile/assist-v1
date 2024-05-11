@@ -7,9 +7,9 @@ import { Input } from 'antd';
 interface InputProps{
     handler: (e: ChangeEvent<HTMLInputElement>) => void,
     label:string,
-    placeholder:string,
-    inputStyle:React.CSSProperties;//将inputstyle属性设置为可选
-    BasicInputStyle:React.CSSProperties;//将属性值设置为可选
+    placeholder?:string | undefined,
+    inputStyle?:React.CSSProperties;//将inputstyle属性设置为可选
+    BasicInputStyle?:React.CSSProperties;//将属性值设置为可选
 }
 
 
