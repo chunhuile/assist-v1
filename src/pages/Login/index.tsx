@@ -49,10 +49,10 @@ const login = () => {
 
           <BasicInput
            inputStyle={{ marginTop:"20px",width:"88%"}} 
-          BasicInputStyle={BasicInputStyle}
-          handler={onChangePassword}  
-          label ="密 码"
-          placeholder ={LabelText.PLACE_PASSWORD}
+            BasicInputStyle={BasicInputStyle}
+            handler={onChangePassword}  
+            label ="密 码"
+            placeholder ={LabelText.PLACE_PASSWORD}
         />
         <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"20px"}}>
           <BasicInput  
