@@ -27,7 +27,7 @@ import { HomeOutlined, UserOutlined, FileProtectOutlined, SettingOutlined } from
   },
   {
     id:4,
-    key: 4,
+    key: "/setting",
     label: "设置",
     icon: <SettingOutlined />,
   }

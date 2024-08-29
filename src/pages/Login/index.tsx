@@ -55,14 +55,7 @@ const login = () => {
             placeholder ={LabelText.PLACE_PASSWORD}
         />
         <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"20px"}}>
-          <BasicInput  
-            inputStyle={{ width:"100%"}} 
-            BasicInputStyle={loginCaptcha}
-            handler={onChangeCapycha}  
-            label =""
-            placeholder ={LabelText.PLACE_PASSWORD}
-          />
-          <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginLeft:"59%"}}>
               <Input type="text" value={captcha} readOnly  style={{ width:"120px"}}/>
               <Button onClick={generateCaptcha} size="middle">获取验证码</Button>
           </div>

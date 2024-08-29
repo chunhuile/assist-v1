@@ -6,13 +6,7 @@ import Home from "../pages/Dashboard/index";
 import UserManagement from "../pages/UserManagement";
 import Dashboard from "../pages/Dashboard/dashboard"
 import ProductManagement from "../pages/ProductManagement";
-
-
-// const withLoadingComponent = (comp:JSX.Element) => {
-//     <React.Suspense fallback={<div>Loading...</div>}>
-//       {comp}
-//     </React.Suspense>
-// }
+import Setting from "../pages/Setting/index"
 
 
 // react router v6·路由配置 （路由表）
@@ -36,6 +30,10 @@ const rootRouter :RouteObject[]=[
       {
         path:"/productManagement",
         element:<ProductManagement />
+      },
+      {
+        path:"/setting",
+        element:<Setting />
       }
     ],
   },

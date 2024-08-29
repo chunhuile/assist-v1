@@ -10,7 +10,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "antd": "^5.16.4",
+    "antd": "^5.20.3",
     "axios": "^1.6.8",
     "echarts": "^5.5.0",
     "mockjs": "^1.1.0",
