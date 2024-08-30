@@ -1,10 +1,11 @@
 import React from 'react';
-import { Layout, Menu,  } from 'antd';
 import DashboardUserInfo from "./components/DashboardUserInfo";
-import DashboardRight from "./components/DashboardNumber";
+import DashboardRight from "./components/DashboardTable";
 
 const App: React.FC = () => (
-    
+
+
+
   <div className='scope-vsc-initialized'>
       <DashboardUserInfo />
       <DashboardRight />
