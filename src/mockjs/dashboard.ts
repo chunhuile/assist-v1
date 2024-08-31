@@ -16,7 +16,6 @@ const userTable = Mock.mock({
 })
 // 模拟接口
 Mock.mock('/api/dashboard/user', 'get', () => {
-  console.log("拦截了请求 mock")
   return {
     data: userTable.data,
     message: 'Success',
@@ -25,4 +24,6 @@ Mock.mock('/api/dashboard/user', 'get', () => {
 });
 
 export default Mock;
+
+
 

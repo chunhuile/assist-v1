@@ -4,10 +4,9 @@ import type { TableProps} from 'antd';
 import { Table,Pagination } from 'antd';
  import DashboardEcharts from './DashboardEcharts';
 import { getUserTable } from '@/api/dashboard';
-// import { getUserTable } from "../../../api/dashboard"
 
 interface DataType {
-  key: string | number;
+  key:  number;
   name: string;
   age: number;
   address: string;
@@ -43,20 +42,32 @@ const DashboardNumber = {
 const DashboardTable: React.FC = () => {
 
   const [data, setData] = useState<DataType[]>([]);
-
-   // 使用 useEffect 钩子请求数据
-   useEffect(() => {
+    // 使用 useEffect 钩子请求数据
+  useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await getUserTable(); // 假设 getUserTable 返回一个 DataType 数组
-        setData(response); // 设置数据到状态中
-      } catch (error) {
-        // console.error("Failed to fetch data", error);
-      }
-    };
+      try{
+        await fetchUserTableData(); // 调用请求函数
 
-    fetchData(); // 调用请求函数
+      
+      }catch(err){
+        console.log(err)
+      }
+    }
+   
+      fetchData()
   }, []); // 空数组意味着该 effect 只在组件挂载时执行一次
+
+
+
+  const fetchUserTableData = async () => {
+    try {
+      const response = await getUserTable(); // 假设 getUserTable 返回一个 DataType 数组
+      setData(response); // 设置数据到状态中
+    } catch (error) {
+      console.error("Failed to fetch data", error);
+    }
+  };
+ 
 
 
   return (

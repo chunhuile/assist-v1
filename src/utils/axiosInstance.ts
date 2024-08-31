@@ -1,14 +1,17 @@
 import axios ,{AxiosInstance} from "axios";
 
+// 获取 token 的函数
+function getToken(): string | null {
+    return sessionStorage.getItem("token");
+  }
 /**
- * base axios
+ * 创建实例
  */ 
-
 const axiosInstance:AxiosInstance = axios.create({
-    // baseURL:"",//配置基础api的路径
+    baseURL: process.env.REACT_APP_API_BASE_URL||"/api",//配置基础api的路径
     timeout:10000,//超出时间
     headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"user/json"
     }
 });
 
@@ -18,7 +21,7 @@ axiosInstance.interceptors.request.use(
         // 在请求发送之前做一些处理，例如添加token
         const token = localStorage.getItem("token")
         if(token){
-            config.headers[`Authorization`] = `Bearer ${token}`
+            config.headers[`Authorization`] = `Bearer ${token}`// 使用更标准的 Authorization 头
         }
 
         return config
@@ -32,10 +35,15 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
     (response)=>{
         // 处理响应式错误
+    // if (response.data.code === 401) {
+    // 如果返回401则返回到登录页
+    //     window.location.href = "/login";
+    // }
         return response.data
     },
-    (err)=>{
-        return Promise.reject(err)
+    (error)=>{
+        console.error("请求错误", error);
+        return Promise.reject(error)
     }
 )
 
