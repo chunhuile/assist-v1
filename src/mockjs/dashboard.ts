@@ -3,7 +3,7 @@
 */ 
 import Mock from 'mockjs';
 
-// dashboarduser的接口数据
+// dashboarduser列表的接口数据
 const userTable = Mock.mock({
   'data|10': [  // 生成10条数据
       {
@@ -23,7 +23,25 @@ Mock.mock('/api/dashboard/user', 'get', () => {
   };
 });
 
+
+
+
+const userEchartsData = Mock.mock({
+  'data|30':[
+    {
+      'key|+1':1,
+      'month|+1': 1, 
+      'userNumber|1-10000':1
+    }
+  ]
+})
+
+Mock.mock('/api/dashboard/userEcharts', 'get', () => {
+  return {
+    data: userEchartsData.data,
+    message: 'Success',
+    status: 200,
+  };
+});
+
 export default Mock;
-
-
-

@@ -6,3 +6,11 @@ export interface userTableItem {
     address:string
 }
 
+ export interface userEchartsItem{
+    key:number,
+    month:number,
+    userNumber:number
+ }
+
+
+
