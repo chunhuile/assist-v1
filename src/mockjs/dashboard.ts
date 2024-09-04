@@ -3,11 +3,10 @@
  */
 import { message } from "antd";
 import Mock from "mockjs";
-
+const Random = Mock.Random;
 // dashboarduser列表的接口数据
 const userTable = Mock.mock({
   "data|10": [
-    // 生成10条数据
     {
       "key|+1": 1, // 自增ID，从1开始
       name: "@name", // 随机生成名字
@@ -35,6 +34,14 @@ const userInfo = Mock.mock({
   currentLoginTime: "@datetime",
   limit: "number|1-6",
 });
+
+const loginData = Mock.mock({
+  token: Random.string(
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+    32
+  ),
+});
+
 // 模拟接口
 Mock.mock("/api/dashboard/user", "get", () => {
   return {
@@ -58,6 +65,22 @@ Mock.mock("/api/dashboard/userInfo", "get", () => {
     message: "Sussess",
     status: 200,
   };
+});
+
+Mock.mock("/api/login", "post", (options: any) => {
+  const { userName, password } = JSON.parse(options.body);
+  if (userName === "admin" && password === "123456") {
+    return {
+      data: loginData, // 假设你已经定义了 loginData
+      message: "Success",
+      status: 200,
+    };
+  } else {
+    return {
+      message: "Invalid username or password",
+      status: 403,
+    };
+  }
 });
 
 export default Mock;

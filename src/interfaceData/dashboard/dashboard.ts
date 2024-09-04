@@ -20,3 +20,7 @@ export interface userInfo {
   currentLoginTime: string;
   limit: number | string;
 }
+
+export interface loginData {
+  token: string | number;
+}

@@ -1,96 +1,108 @@
-import React ,{useState, PureComponent }from 'react';
-import {Button,Input } from "antd"
+import React, { useState, PureComponent } from "react";
+import { Button, message } from "antd";
+import { useNavigate } from "react-router-dom";
 
-import BasicInput from '../components/basic/Input';
-import { LabelText } from '../../mockjs/LabelText';
-
+import BasicInput from "../components/basic/Input";
+import { LabelText } from "../../mockjs/LabelText";
+import { login } from "@/api/dashboard";
 
 const Login: React.FC = () => {
-  const [captcha, setCaptcha] = useState<string>('');
+  const backgroundImage = require("@/assests/images/energyLogin.png");
+  const [name, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const navigateTo = useNavigate();
 
-  // 用户名
-const onChangeName = () => {
-  console.log("nihao  --")
-}
-// 密码
-const onChangePassword = () => {
-  console.log("nihao  --")
-}
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+  // 密码
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
-// 输入验证码
-const onChangeCapycha = () => {
+  const clickLogin = async () => {
+    try {
+      const params = {
+        userName: name,
+        password: password,
+      };
 
-}
-
-// 生成密码
-const generateCaptcha = () => {
-  const randomCaptcha = Math.random().toString(36).substring(2, 6).toUpperCase();
-  setCaptcha(randomCaptcha);
-};
-
-
-
-const login = () => {
-  console.log("点击了登陆")
-}
+      const response = await login(params);
+      window.sessionStorage.setItem("token", response.token.toString());
+      message.success("登陆成功");
+      setTimeout(() => {
+        navigateTo("/home");
+      }, 1000);
+    } catch (error: any) {
+      message.error(error.message);
+    }
+  };
+  const signOut = () => {
+    console.log("dianjituichu");
+  };
 
   return (
-    (
-      <div style={LoginIndex}>
-       <div style={{width:"30%"}}>
-
-       <BasicInput
-          inputStyle={{width:"88%"}}
+    <div style={{ ...LoginIndex, backgroundImage: `url(${backgroundImage})` }}>
+      <div style={{ width: "30%", position: "absolute", right: "10%" }}>
+        <BasicInput
+          inputStyle={{ width: "88%" }}
           BasicInputStyle={BasicInputStyle}
-          handler={onChangeName}  
-          label ="用户名"
-          placeholder ={LabelText.PLACE_HOLDER}
+          handler={onChangeName}
+          label="用户名"
+          placeholder={LabelText.PLACE_HOLDER}
+          value={name}
         />
 
-          <BasicInput
-           inputStyle={{ marginTop:"20px",width:"88%"}} 
-            BasicInputStyle={BasicInputStyle}
-            handler={onChangePassword}  
-            label ="密 码"
-            placeholder ={LabelText.PLACE_PASSWORD}
+        <BasicInput
+          inputStyle={{ marginTop: "20px", width: "88%" }}
+          BasicInputStyle={BasicInputStyle}
+          handler={onChangePassword}
+          label="密 码"
+          placeholder={LabelText.PLACE_PASSWORD}
+          value={password}
         />
-        <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"20px"}}>
-          <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginLeft:"59%"}}>
-              <Input type="text" value={captcha} readOnly  style={{ width:"120px"}}/>
-              <Button onClick={generateCaptcha} size="middle">获取验证码</Button>
-          </div>
+
+        <div
+          style={{
+            marginTop: "50px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "end",
+          }}
+        >
+          <Button
+            style={{ width: "120px" }}
+            type="primary"
+            size="middle"
+            onClick={clickLogin}
+          >
+            登 陆
+          </Button>
+          <Button
+            style={{ width: "120px", marginLeft: "20px" }}
+            type="primary"
+            size="middle"
+            onClick={signOut}
+          >
+            退 出
+          </Button>
         </div>
-
-        <Button style={{ width:"100%",marginTop:"20px"}} type="primary" size="middle" onClick={login}>登 陆</Button>
-       </div>
       </div>
-    )
-  )
-}
-
+    </div>
+  );
+};
 
 const LoginIndex = {
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    height:"100vh"
-  
-}
+  display: "flex",
+  height: "100vh",
+  alignItems: "center",
+};
 
 const BasicInputStyle = {
-  display:"flex",
-  justifyContent:"space-between",
-  fontSize:"14px",
-  alignItems:"center"
-}
-
-const loginCaptcha={
-  display:"flex",
-  justifyContent:"space-between",
-  fontSize:"14px",
-  alignItems:"center",
-  width:"54%"
-}
+  display: "flex",
+  justifyContent: "space-between",
+  fontSize: "14px",
+  alignItems: "center",
+};
 
 export default Login;
-
