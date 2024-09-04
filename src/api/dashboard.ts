@@ -10,6 +10,7 @@ import {
   getUserTableParams,
   userTableDataItem,
   addressItem,
+  userManagementDataType,
 } from "@/interfaceData/userManagement/index";
 
 export const login = async (params: {
@@ -43,4 +44,10 @@ export const getUserTableData = async (
 
 export const getAddreessData = async (): Promise<addressItem[]> => {
   return await GET("/address");
+};
+
+export const getProductMentData = async (): Promise<
+  userManagementDataType[]
+> => {
+  return await GET("/product");
 };

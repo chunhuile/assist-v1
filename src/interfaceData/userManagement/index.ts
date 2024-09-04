@@ -14,3 +14,10 @@ export interface addressItem {
   label: string;
   value: number;
 }
+export interface userManagementDataType {
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+  tags: string[];
+}

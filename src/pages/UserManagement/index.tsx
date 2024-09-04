@@ -6,7 +6,10 @@ import UserFilter from "./compontents/UserFilter";
 import type { TableProps } from "antd";
 import { getUserTableData, getAddreessData } from "@/api/dashboard";
 import { message, Space } from "antd";
+import dayjs, { Dayjs } from "dayjs";
+import weekday from "dayjs/plugin/weekday";
 
+dayjs.extend(weekday);
 interface addressDataType {
   id: number;
   label: string;
@@ -54,7 +57,7 @@ const UserManagement: React.FC = () => {
   const [keyWord, setKey] = useState<string>("");
   const [addressData, setAddressData] = useState<addressDataType[]>([]);
   const [addressKey, setAddressItems] = useState<string[]>([]);
-
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   useEffect(() => {
     const featchData = async () => {
       try {
@@ -72,7 +75,7 @@ const UserManagement: React.FC = () => {
       getUserManangementTable();
     }
     getUserManangementTable();
-  }, [keyWord, addressKey]);
+  }, [keyWord, addressKey, selectedDate]);
 
   const getUserManangementTable = async () => {
     const params = {
@@ -80,6 +83,7 @@ const UserManagement: React.FC = () => {
       pageSize: 10,
       key: keyWord,
       addressKey: addressKey,
+      selectedDate: selectedDate,
     };
     console.log(params);
     const data = await getUserTableData(params);
@@ -113,6 +117,11 @@ const UserManagement: React.FC = () => {
   const changeAddress = async (value: string[]) => {
     await setAddressItems(value);
   };
+  // 选择时间
+  const handleDateChange = (date: Dayjs | null) => {
+    setSelectedDate(date);
+    console.log("Selected Date:", date?.format("YYYY-MM-DD"));
+  };
 
   return (
     <div className="UserManagement scope-vsc-initialized">
@@ -123,6 +132,8 @@ const UserManagement: React.FC = () => {
           onChangeName={onChangeName}
           setSelectedItems={changeAddress}
           selectedItems={addressKey}
+          onDateChange={handleDateChange}
+          selectedDate={selectedDate}
         />
       </div>
 

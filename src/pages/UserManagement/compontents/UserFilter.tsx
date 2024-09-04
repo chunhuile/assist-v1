@@ -2,13 +2,15 @@ import React, { ChangeEvent } from "react";
 import UserSelect from "./UserSelect";
 import UserDatePicker from "./UserDatePicker";
 import BasicInput from "@/pages/components/basic/Input";
-
+import dayjs, { Dayjs } from "dayjs";
 interface ChildProps {
   options: { id: number; label: string; value: number }[];
   onChangeName: (value: ChangeEvent<HTMLInputElement>) => void;
   keyWord: string;
   setSelectedItems: (value: string[]) => void;
   selectedItems: string[];
+  selectedDate: Dayjs | null;
+  onDateChange: (date: Dayjs | null) => void;
 }
 
 const UserFilter: React.FC<ChildProps> = ({
@@ -17,6 +19,8 @@ const UserFilter: React.FC<ChildProps> = ({
   onChangeName,
   setSelectedItems,
   selectedItems,
+  selectedDate,
+  onDateChange,
 }) => {
   return (
     <div className="UserFilter">
@@ -46,7 +50,11 @@ const UserFilter: React.FC<ChildProps> = ({
         style={{ marginLeft: "20px", display: "flex", alignItems: "center" }}
       >
         <span>日期</span>
-        <UserDatePicker style={{ marginLeft: "10px" }} />
+        <UserDatePicker
+          onChange={onDateChange}
+          value={selectedDate}
+          style={{ marginLeft: "10px" }}
+        />
       </div>
     </div>
   );

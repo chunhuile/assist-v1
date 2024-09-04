@@ -59,6 +59,18 @@ const userTableData = Mock.mock({
   ],
 });
 
+const productData = Mock.mock({
+  "data|20": [
+    {
+      "key|+1": 1,
+      name: "@name",
+      "age|0-99": 1,
+      address: "@city(true) No. @integer(1, 100) Lake Park",
+      "tags|1-5": ["@word(3, 5)"],
+    },
+  ],
+});
+
 // 模拟接口
 Mock.mock("/api/dashboard/user", "get", () => {
   return {
@@ -103,6 +115,14 @@ Mock.mock("/api/login", "post", (options: any) => {
 Mock.mock("/api/userManagement", "post", (options: object) => {
   return {
     data: userTableData.data,
+    message: "Sussess",
+    status: 200,
+  };
+});
+
+Mock.mock("/api/product", "get", () => {
+  return {
+    data: productData.data,
     message: "Sussess",
     status: 200,
   };
