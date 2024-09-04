@@ -1,26 +1,23 @@
-import React, { useState } from "react";
+import React, { ChangeEvent } from "react";
 import UserSelect from "./UserSelect";
 import UserDatePicker from "./UserDatePicker";
-import BasicInput from "../../../pages/components/basic/Input";
-import { LabelText } from "../../../mockjs/LabelText";
+import BasicInput from "@/pages/components/basic/Input";
 
 interface ChildProps {
   options: { id: number; label: string; value: number }[];
+  onChangeName: (value: ChangeEvent<HTMLInputElement>) => void;
+  keyWord: string;
+  setSelectedItems: (value: string[]) => void;
+  selectedItems: string[];
 }
 
-const UserFilter: React.FC<ChildProps> = ({ options }) => {
-  const [selectedItems] = useState<string[]>([]);
-  const [keyWord, setKey] = useState<string>("");
-  // 点击select下拉框的点击事件
-  const setSelectedItems = (value: string[]) => {
-    console.log(value, "cedian");
-  };
-
-  // 关键字搜索
-  const onChangeName = () => {
-    console.log("nihao  --");
-  };
-
+const UserFilter: React.FC<ChildProps> = ({
+  options,
+  keyWord,
+  onChangeName,
+  setSelectedItems,
+  selectedItems,
+}) => {
   return (
     <div className="UserFilter">
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -30,17 +27,17 @@ const UserFilter: React.FC<ChildProps> = ({ options }) => {
           BasicInputStyle={BasicInputStyle}
           handler={onChangeName}
           label=""
-          placeholder={LabelText.PLACE_HOLDER}
+          placeholder="请输入关键字"
           value={keyWord}
         />
       </div>
 
       <div style={{ marginLeft: "20px" }}>
-        <span>时间</span>
+        <span>地址</span>
         <UserSelect
           options={options}
-          style={{ width: "200px", marginLeft: "10px" }}
-          placeholder="请选择"
+          style={{ width: "300px", marginLeft: "10px" }}
+          placeholder="请选择地址"
           selectedItems={selectedItems}
           onChange={setSelectedItems}
         />

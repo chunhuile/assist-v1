@@ -19,6 +19,10 @@ export interface userInfo {
   lastLoginTime: string;
   currentLoginTime: string;
   limit: number | string;
+  paymentOrder: string | number;
+  favoriteOrder: string | number;
+  paymentOrders: string | number;
+  favoriteOrders: string | number;
 }
 
 export interface loginData {

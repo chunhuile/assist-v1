@@ -60,7 +60,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - mock.js 数据模拟
 - echarts 图表
 - axios
--
+  -lodash
 
 ### 构建
 

@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
-import { Select } from 'antd';
+import React from "react";
+import { Select } from "antd";
 
 interface ChildProps {
-    options:{id:number,label:   string,value:number}[],
-    style:Object,
-    placeholder:string,
-    selectedItems:string[],
-    onChange:(value: string[]) => void
+  options: { id: number; label: string; value: number | string }[];
+  style: Object;
+  placeholder: string;
+  selectedItems: string[];
+  onChange: (value: string[]) => void;
 }
 
-
 const UserSelect: React.FC<ChildProps> = ({
-    options,
-    style,
-    placeholder,
-    selectedItems,
-    onChange
+  options,
+  style,
+  placeholder,
+  selectedItems,
+  onChange,
 }) => {
-
   return (
     <Select
       mode="multiple"
@@ -25,11 +23,12 @@ const UserSelect: React.FC<ChildProps> = ({
       value={selectedItems}
       onChange={onChange}
       style={style}
-     options={options.map((item) => ({
+      maxTagCount={1}
+      maxTagTextLength={12}
+      options={options.map((item) => ({
         value: item.id,
         label: item.label,
-    }))}
-
+      }))}
     />
   );
 };

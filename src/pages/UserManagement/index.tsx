@@ -1,25 +1,133 @@
-import React from "react";
-import "../../styles/userManagement.scss"
-
+import React, { useEffect, useState } from "react";
+import "@/styles/userManagement.scss";
+import debounce from "lodash/debounce";
 import UserTable from "./compontents/userTable";
 import UserFilter from "./compontents/UserFilter";
-import { dateSelect } from "../../mockjs/user"
-interface dateSelect {
-    dateSelectItem:[]
-}
-interface dateSelectItem {
-    label:string;
-    id:number,
-    value:number
+import type { TableProps } from "antd";
+import { getUserTableData, getAddreessData } from "@/api/dashboard";
+import { message, Space } from "antd";
+
+interface addressDataType {
+  id: number;
+  label: string;
+  value: number;
 }
 
+interface DataType {
+  key: string | number;
+  name: string;
+  age: number;
+  address: string;
+}
+const columns: TableProps<DataType>["columns"] = [
+  {
+    title: "姓名",
+    dataIndex: "name",
+    key: "name",
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: "年龄",
+    dataIndex: "age",
+    key: "age",
+  },
+  {
+    title: "地址",
+    dataIndex: "address",
+    key: "address",
+  },
 
-const UserManagement: React.FC = () => (
-    <div className="UserManagement scope-vsc-initialized" >
-        <div className="UserManagement__filter">
-            <UserFilter options = { dateSelect } />
-        </div>
-    <UserTable />
+  {
+    title: "操作",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <a>Invite {record.name}</a>
+        <a>Delete</a>
+      </Space>
+    ),
+  },
+];
+
+const UserManagement: React.FC = () => {
+  const [userManagementData, setUserManagementData] = useState<DataType[]>([]);
+  const [keyWord, setKey] = useState<string>("");
+  const [addressData, setAddressData] = useState<addressDataType[]>([]);
+  const [addressKey, setAddressItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    const featchData = async () => {
+      try {
+        await getUserManangementTable();
+        await getAddress();
+      } catch (err: any) {
+        message.error(err.message);
+      }
+    };
+    featchData();
+  }, []);
+
+  useEffect(() => {
+    if (keyWord) {
+      getUserManangementTable();
+    }
+    getUserManangementTable();
+  }, [keyWord, addressKey]);
+
+  const getUserManangementTable = async () => {
+    const params = {
+      page: 1,
+      pageSize: 10,
+      key: keyWord,
+      addressKey: addressKey,
+    };
+    console.log(params);
+    const data = await getUserTableData(params);
+    setUserManagementData(data);
+    try {
+    } catch (err: any) {
+      message.error(err.message);
+    }
+  };
+
+  const getAddress = async () => {
+    try {
+      const data = await getAddreessData();
+      setAddressData(data);
+    } catch (err: any) {
+      message.error(err.message);
+    }
+  };
+
+  //   关键字搜索
+  const onChangeName = debounce(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(e.target.value, "e.target.value");
+      const newKey = e.target.value;
+      await setKey(newKey);
+    },
+    300
+  );
+
+  // 选择地址
+  const changeAddress = async (value: string[]) => {
+    await setAddressItems(value);
+  };
+
+  return (
+    <div className="UserManagement scope-vsc-initialized">
+      <div className="UserManagement__filter">
+        <UserFilter
+          keyWord={keyWord}
+          options={addressData}
+          onChangeName={onChangeName}
+          setSelectedItems={changeAddress}
+          selectedItems={addressKey}
+        />
+      </div>
+
+      <UserTable data={userManagementData} columns={columns} />
     </div>
-);
-export default UserManagement
+  );
+};
+export default UserManagement;
