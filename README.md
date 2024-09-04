@@ -45,29 +45,30 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-
 # 项目名称
+
     通用的后台管理系统
+
 ## 技术选型
 
 - react-router-dom
-- vite
+- redux
 - mui
-- tailwind/css + scss 
+- tailwind/css + scss
 - 国际化 react-i18next i18next
 - 框架 ant Design ui
 - mock.js 数据模拟
-- echarts图表
+- echarts 图表
 - axios
--  
+-
 
 ### 构建
--  对node版本号有要求
-    目前使用的v18.0.0
 
-
+- 对 node 版本号有要求
+  目前使用的 v18.0.0
 
 ## 规范
+
     文件命遵守驼峰 例如：inteviewTable
     css遵守驼峰 且遵守域名空间
     注释参照jsdoc规范

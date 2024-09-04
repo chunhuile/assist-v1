@@ -120,6 +120,7 @@ const DashboardTable: React.FC = () => {
     // 使用指定的配置项和数据显示图表
     myChart.setOption(option);
 
+    return () => myChart.dispose();
 }
 
   return (

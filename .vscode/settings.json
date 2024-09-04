@@ -1,3 +1,16 @@
 {
-    "typescript.tsdk": "\"typescript.tsdk\": \"./node_modules/typescript/lib\""
+  "typescript.tsdk": "./node_modules/typescript/lib", // TypeScript SDK 路径
+  "editor.formatOnSave": true, // 保存时自动格式化
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // 使用 Prettier 作为默认格式化程序
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint":"always"
+  },
+  "prettier.requireConfig": false, // 确保只有在项目中有 Prettier 配置文件时才格式化
+  "files.autoSave": "onWindowChange" // 可选：当窗口失去焦点时自动保存
 }
