@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
 
-import BasicInput from "../components/basic/Input";
+import BasicInput from "../../components/basic/Input";
 import { LabelText } from "../../mockjs/LabelText";
 import { login } from "@/api/dashboard";
 

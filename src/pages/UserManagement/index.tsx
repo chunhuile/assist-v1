@@ -7,9 +7,7 @@ import type { TableProps } from "antd";
 import { getUserTableData, getAddreessData } from "@/api/dashboard";
 import { message, Space } from "antd";
 import dayjs, { Dayjs } from "dayjs";
-import weekday from "dayjs/plugin/weekday";
 
-dayjs.extend(weekday);
 interface addressDataType {
   id: number;
   label: string;
@@ -119,8 +117,8 @@ const UserManagement: React.FC = () => {
   };
   // 选择时间
   const handleDateChange = (date: Dayjs | null) => {
-    setSelectedDate(date);
-    console.log("Selected Date:", date?.format("YYYY-MM-DD"));
+    // setSelectedDate(date);
+    // console.log("Selected Date:", date?.format("YYYY-MM-DD"));
   };
 
   return (
@@ -133,8 +131,8 @@ const UserManagement: React.FC = () => {
           setSelectedItems={changeAddress}
           selectedItems={addressKey}
           onDateChange={handleDateChange}
-          selectedDate={selectedDate}
         />
+        {/* selectedDate={selectedDate} */}
       </div>
 
       <UserTable data={userManagementData} columns={columns} />

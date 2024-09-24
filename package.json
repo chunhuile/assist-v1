@@ -23,6 +23,7 @@
     "react-scripts": "5.0.1",
     "sass": "^1.78.0",
     "sass-loader": "12.x",
+    "three": "^0.168.0",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },

@@ -1,24 +1,23 @@
 import React from "react";
-import { RouteObject,Navigate } from "react-router-dom";
-import Login from "../pages/Login"
-
+import { RouteObject, Navigate } from "react-router-dom";
+import Login from "../pages/Login";
 import Home from "../pages/Dashboard/index";
 import UserManagement from "../pages/UserManagement";
-import Dashboard from "../pages/Dashboard/dashboard"
+import Dashboard from "../pages/Dashboard/dashboard";
 import ProductManagement from "../pages/ProductManagement";
-import Setting from "../pages/Setting/index"
-
+import Setting from "@/pages/Setting/index";
+import BigShow from "@/pages/BigShow/index";
 
 // react router v6·路由配置 （路由表）
-const rootRouter :RouteObject[]=[
+const rootRouter: RouteObject[] = [
   {
     path: "/",
-    element:<Navigate to="/home" />,//Navigate是重定向
+    element: <Navigate to="/home" />, //Navigate是重定向
   },
-    {
+  {
     path: "/",
     element: <Home />,
-    children:[
+    children: [
       {
         path: "/home",
         element: <Dashboard />,
@@ -28,20 +27,23 @@ const rootRouter :RouteObject[]=[
         element: <UserManagement />,
       },
       {
-        path:"/productManagement",
-        element:<ProductManagement />
+        path: "/productManagement",
+        element: <ProductManagement />,
       },
       {
-        path:"/setting",
-        element:<Setting />
-      }
+        path: "/setting",
+        element: <Setting />,
+      },
+      {
+        path: "/BigShow",
+        element: <BigShow />,
+      },
     ],
   },
 
   {
-path:"/login",
-element:<Login />
-  }
-
-]
+    path: "/login",
+    element: <Login />,
+  },
+];
 export default rootRouter;

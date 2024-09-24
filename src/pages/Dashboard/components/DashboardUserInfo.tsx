@@ -4,7 +4,7 @@ import "@/styles/dashboard.scss";
 import "@/styles/global.scss";
 import userImage from "@/assests/images/admin_user.png";
 import DashboardCard from "./DashboardCard";
-import DashboardNumberCard from "./DashboardNumberCard";
+import DashboardNumberCard from "@/components/basic/card";
 import { getUserInfo } from "@/api/dashboard";
 import { userInfo } from "@/interfaceData/dashboard/dashboard";
 
@@ -24,6 +24,8 @@ const App: React.FC = () => {
     favoriteOrder: "",
     favoriteOrders: "",
   });
+  let cardModule: React.ReactNode;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,6 +45,38 @@ const App: React.FC = () => {
     console.log(data);
     setUserInfo(data);
   };
+
+  cardModule = (
+    <div style={{ width: "50%", ...DashboardRightData }}>
+      <DashboardNumberCard
+        title="今日支付订单"
+        text={userInfo.paymentOrder}
+        iconType="CheckOutlined"
+        cardStylesModule={{ width: "46%" }}
+      />
+
+      <DashboardNumberCard
+        text={userInfo.favoriteOrder}
+        title="今日收藏订单"
+        iconType="ClockCircleOutlined"
+        cardStylesModule={{ width: "46%" }}
+      />
+
+      <DashboardNumberCard
+        text={userInfo.paymentOrders}
+        title="本月支付订单"
+        iconType="CheckOutlined"
+        cardStylesModule={{ width: "46%" }}
+      />
+
+      <DashboardNumberCard
+        text={userInfo.favoriteOrders}
+        title="本月收藏订单"
+        iconType="ClockCircleOutlined"
+        cardStylesModule={{ width: "46%" }}
+      />
+    </div>
+  );
 
   return (
     <div style={DashboarLeft}>
@@ -76,9 +110,8 @@ const App: React.FC = () => {
                 : "未知角色"}
             </span>
           </div>
-          <div></div>
         </div>
-        <Divider></Divider>
+        <Divider />
 
         <div>
           <DashboardCard
@@ -94,46 +127,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div style={{ width: "50%" }}>
-        {/* 数据统计 */}
-        <div style={DashboardRightData}>
-          <DashboardNumberCard
-            number={userInfo.paymentOrder}
-            label="今日支付订单"
-            style={DashboardRightNumber}
-            iconStyle={DashboardCardIcon}
-            iconType="CheckOutlined"
-            iconColor={{ color: "#fff" }}
-          />
-
-          <DashboardNumberCard
-            number={userInfo.favoriteOrder}
-            label="今日收藏订单"
-            style={DashboardRightNumber}
-            iconStyle={DashboardCardIconBackColl}
-            iconType="ClockCircleOutlined"
-            iconColor={{ color: "#fff" }}
-          />
-
-          <DashboardNumberCard
-            number={userInfo.paymentOrders}
-            label="本月支付订单"
-            style={DashboardRightNumber}
-            iconStyle={DashboardCardIcon}
-            iconType="CheckOutlined"
-            iconColor={{ color: "#fff" }}
-          />
-
-          <DashboardNumberCard
-            number={userInfo.favoriteOrders}
-            label="本月收藏订单"
-            style={DashboardRightNumber}
-            iconStyle={DashboardCardIconBackColl}
-            iconType="ClockCircleOutlined"
-            iconColor={{ color: "#fff" }}
-          />
-        </div>
-      </div>
+      {cardModule}
     </div>
   );
 };
@@ -154,36 +148,6 @@ const DashboarLeftUserinfo = {
 const DashboardRightData = {
   display: "flex",
   flexFlow: "wrap",
-};
-
-const DashboardRightNumber = {
-  width: "46%",
-  margin: "6px",
-  background: "#fff",
-  padding: "30px 20px",
-  borderRadius: "12px",
-  display: "flex",
-};
-
-const DashboardCardIcon = {
-  width: "40%",
-  height: "100%",
-  background: "#5de6d64a",
-  borderRadius: "10px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "20px",
-};
-const DashboardCardIconBackColl = {
-  background: "rgb(239 166 67/29%)",
-  width: "40%",
-  height: "100%",
-  borderRadius: "10px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "20px",
 };
 
 export default App;

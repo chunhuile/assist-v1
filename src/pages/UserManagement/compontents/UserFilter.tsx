@@ -1,15 +1,32 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import UserSelect from "./UserSelect";
-import UserDatePicker from "./UserDatePicker";
-import BasicInput from "@/pages/components/basic/Input";
+import BasicInput from "@/components/basic/Input";
+import { DatePicker } from "antd";
+
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs, { Dayjs } from "dayjs";
+import weekday from "dayjs/plugin/weekday";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import updateLocale from "dayjs/plugin/updateLocale";
+import "dayjs/locale/zh-cn";
+
+dayjs.extend(customParseFormat);
+
+const dateFormat = "YYYY-MM-DD"; // 根据需要引入合适的语言
+// 设置 locale
+dayjs.locale("zh-cn");
+
+dayjs.extend(localizedFormat);
+dayjs.extend(updateLocale);
+dayjs.extend(weekday);
+
 interface ChildProps {
   options: { id: number; label: string; value: number }[];
   onChangeName: (value: ChangeEvent<HTMLInputElement>) => void;
   keyWord: string;
   setSelectedItems: (value: string[]) => void;
   selectedItems: string[];
-  selectedDate: Dayjs | null;
+  // selectedDate: Dayjs | null;
   onDateChange: (date: Dayjs | null) => void;
 }
 
@@ -19,9 +36,15 @@ const UserFilter: React.FC<ChildProps> = ({
   onChangeName,
   setSelectedItems,
   selectedItems,
-  selectedDate,
+  // selectedDate,
   onDateChange,
 }) => {
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+
+  const onChange = async (date: Dayjs | null) => {
+    console.log(date, "ee");
+  };
+
   return (
     <div className="UserFilter">
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -50,10 +73,14 @@ const UserFilter: React.FC<ChildProps> = ({
         style={{ marginLeft: "20px", display: "flex", alignItems: "center" }}
       >
         <span>日期</span>
-        <UserDatePicker
-          onChange={onDateChange}
-          value={selectedDate}
+
+        <DatePicker
           style={{ marginLeft: "10px" }}
+          defaultValue={dayjs("2019-09-03", dateFormat)}
+          minDate={dayjs("2019-08-01", dateFormat)}
+          maxDate={dayjs("2020-10-31", dateFormat)}
+          onChange={onChange}
+          value={selectedDate}
         />
       </div>
     </div>
